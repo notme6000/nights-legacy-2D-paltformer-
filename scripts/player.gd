@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var jump_force = 700
 
+@onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
+
 func _physics_process(delta):
 	
 	if !is_on_floor():
@@ -17,5 +20,7 @@ func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("move_left","move_right")
 	velocity.x = speed * horizontal_direction 
 	move_and_slide()
+	
+	sprite.flip_h = (horizontal_direction == -1)
 	
 	print(velocity)
