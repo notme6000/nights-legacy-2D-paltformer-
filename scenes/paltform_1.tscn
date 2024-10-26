@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhxloybkr3c5o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osaun"]
+size = Vector2(100, 20)
+
+[sub_resource type="QuadMesh" id="QuadMesh_g8xkd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="paltform1" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paltform1"]
+shape = SubResource("RectangleShape2D_osaun")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="paltform1"]
+modulate = Color(1, 0.145098, 1, 1)
+position = Vector2(1.52588e-05, 7.62939e-06)
+scale = Vector2(100, 20)
+mesh = SubResource("QuadMesh_g8xkd")
