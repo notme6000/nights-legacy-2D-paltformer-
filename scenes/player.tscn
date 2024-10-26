@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bfqkrs1fdsou0" path="res://assets/120x80_PNGSheets/_Jump.png" id="4_tako2"]
 [ext_resource type="Texture2D" uid="uid://bmpc5a2t3jbh3" path="res://assets/120x80_PNGSheets/_Fall.png" id="5_s0gxj"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nkc27"]
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nvu2"]
+size = Vector2(20, 34)
 
 [sub_resource type="Animation" id="Animation_vgnis"]
 length = 0.001
@@ -296,10 +296,12 @@ texture = ExtResource("2_5ma4p")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -19)
-shape = SubResource("CapsuleShape2D_nkc27")
+position = Vector2(-2, -17)
+shape = SubResource("RectangleShape2D_6nvu2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -17)
+zoom = Vector2(0.65, 0.65)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
