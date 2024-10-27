@@ -1,18 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://1fcc6byjrp6i"]
+[gd_scene load_steps=4 format=3 uid="uid://1fcc6byjrp6i"]
 
 [ext_resource type="PackedScene" uid="uid://b0urliq063v2b" path="res://scenes/player.tscn" id="1_bmy82"]
 [ext_resource type="PackedScene" uid="uid://dhxloybkr3c5o" path="res://scenes/paltform_1.tscn" id="2_34bpn"]
+[ext_resource type="PackedScene" uid="uid://by4v5k2408ed6" path="res://scenes/box.tscn" id="3_ropk7"]
 
 [node name="world" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_bmy82")]
-position = Vector2(114, -7)
+position = Vector2(126, 50)
 
 [node name="paltform1" parent="." instance=ExtResource("2_34bpn")]
-position = Vector2(29, 65)
+position = Vector2(143, 80)
 
-[node name="paltform2" parent="." instance=ExtResource("2_34bpn")]
-position = Vector2(156, 42)
-
-[node name="paltform3" parent="." instance=ExtResource("2_34bpn")]
-position = Vector2(266, 12)
+[node name="box" parent="." instance=ExtResource("3_ropk7")]
+position = Vector2(45, 21)

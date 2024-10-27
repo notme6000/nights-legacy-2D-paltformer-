@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhxloybkr3c5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osaun"]
-size = Vector2(100, 20)
+size = Vector2(700, 35)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g8xkd"]
+size = Vector2(700, 35)
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,5 +17,4 @@ shape = SubResource("RectangleShape2D_osaun")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="paltform1"]
 modulate = Color(1, 0.145098, 1, 1)
 position = Vector2(1.52588e-05, 7.62939e-06)
-scale = Vector2(100, 20)
 mesh = SubResource("QuadMesh_g8xkd")
