@@ -8,6 +8,7 @@
 
 [node name="player" parent="." instance=ExtResource("1_bmy82")]
 position = Vector2(126, 50)
+gravity = 30
 
 [node name="paltform1" parent="." instance=ExtResource("2_34bpn")]
 position = Vector2(143, 80)
