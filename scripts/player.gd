@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var jump_force = 700
 
+
 @onready var animation_player = $AnimationPlayer #connecting or calling the respective nodes to the variables
 @onready var sprite = $Sprite2D
 @onready var cshape = $CollisionShape2D
@@ -12,9 +13,11 @@ extends CharacterBody2D
 
 var is_crouching = false
 var stuck_under_object = false
+var attack = false
 
 var standing_cshape = preload("res://resources/knight_standing_cshape.tres")
 var crouching_cshape = preload("res://resources/knight_crouching_cshape.tres")
+
 
 func _physics_process(_delta):
 	
@@ -56,17 +59,21 @@ func _physics_process(_delta):
 func above_head_is_empty() -> bool:
 	var result = !crouch_raycast1.is_colliding() && !crouch_raycast2.is_colliding()
 	return result
+		
+		
+func update_animantions(horizontal_direction): #this function updated animation according to the action of the player
 	
 		
-		
-
-func update_animantions(horizontal_direction): #this function updated animation according to the action of the player
 	if is_on_floor():
 		if horizontal_direction == 0: #if not movement or idle the animation will play "idle"
 			if is_crouching:
 				animation_player.play("crouch")
 			else:
-				animation_player.play("idle")
+				if Input.is_action_pressed("attack"):
+					attack = true
+					animation_player.play("attack_2")
+				else:
+					animation_player.play("idle")
 		else: #else play run animation 
 			if is_crouching:
 				animation_player.play("crouch_walk")
@@ -80,6 +87,7 @@ func update_animantions(horizontal_direction): #this function updated animation 
 				animation_player.play("fall")
 		else:
 			animation_player.play("crouch")
+
 func switch_direction(horizontal_direction): #this function flips the sprite horizontally to match the movement animation (facing the player right when running right and vice versa)
 	sprite.flip_h = (horizontal_direction ==-1)
 	sprite.position.x = horizontal_direction * 3.6
