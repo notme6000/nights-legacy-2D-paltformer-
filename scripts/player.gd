@@ -50,7 +50,7 @@ func _physics_process(_delta):
 					stuck_under_object = true
 	
 	if stuck_under_object && above_head_is_empty():
-		if !Input.is_action_pressed("crouch"):
+		if !Input.is_action_just_pressed("crouch"):
 			stand()
 			stuck_under_object = false
 		
@@ -63,7 +63,6 @@ func above_head_is_empty() -> bool:
 		
 func update_animantions(horizontal_direction): #this function updated animation according to the action of the player
 	
-		
 	if is_on_floor():
 		if horizontal_direction == 0: #if not movement or idle the animation will play "idle"
 			if is_crouching:
@@ -105,5 +104,15 @@ func stand():
 	is_crouching = false
 	cshape.shape = standing_cshape
 	cshape.position.y = -17
+
+#func attacking():
+	#if attack == true:
+		#animation_player.play("attack_2")
+		#attack_false()
+	
+#func attack_false():
+	#attack = false
+	
+
 
 	print(velocity) #prints the velocity for debugging purposes

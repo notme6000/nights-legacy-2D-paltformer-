@@ -471,7 +471,7 @@ libraries = {
 "": SubResource("AnimationLibrary_j0sht")
 }
 autoplay = "idle"
-speed_scale = 0.3
+speed_scale = 0.4
 
 [node name="crouchraycast_1" type="RayCast2D" parent="."]
 position = Vector2(-7, -15)
