@@ -10,10 +10,11 @@ extends CharacterBody2D
 @onready var cshape = $CollisionShape2D
 @onready var crouch_raycast1 = $crouchraycast_1
 @onready var crouch_raycast2 = $crouchraycast_2
+@onready var sword_hit_box = $Sprite2D/sword_hit
 
 var is_crouching = false
 var stuck_under_object = false
-var attack = false
+var attack: bool = false
 
 var standing_cshape = preload("res://resources/knight_standing_cshape.tres")
 var crouching_cshape = preload("res://resources/knight_crouching_cshape.tres")
@@ -64,13 +65,16 @@ func above_head_is_empty() -> bool:
 func update_animantions(horizontal_direction): #this function updated animation according to the action of the player
 	
 	if is_on_floor():
+		if attack: return
 		if horizontal_direction == 0: #if not movement or idle the animation will play "idle"
 			if is_crouching:
 				animation_player.play("crouch")
 			else:
-				if Input.is_action_pressed("attack"):
-					attack = true
+				if Input.is_action_just_pressed("attack"):
 					animation_player.play("attack_2")
+					attack = true
+					await animation_player.animation_finished
+					attack = false
 				else:
 					animation_player.play("idle")
 		else: #else play run animation 
@@ -91,6 +95,10 @@ func switch_direction(horizontal_direction): #this function flips the sprite hor
 	sprite.flip_h = (horizontal_direction ==-1)
 	sprite.position.x = horizontal_direction * 3.6
 	
+#func switch_sword_hitbox_direction():
+	#sword_hit_box.
+	
+	
 func crouch():
 	if is_crouching:
 		return
@@ -105,14 +113,6 @@ func stand():
 	cshape.shape = standing_cshape
 	cshape.position.y = -17
 
-#func attacking():
-	#if attack == true:
-		#animation_player.play("attack_2")
-		#attack_false()
-	
-#func attack_false():
-	#attack = false
-	
-
-
-	print(velocity) #prints the velocity for debugging purposes
+func _on_sword_hit_area_entered(area: Area2D) -> void:
+	if area.is_in_group("hurt_box"):
+		area.take_damage()
